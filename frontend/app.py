@@ -1,6 +1,11 @@
-import streamlit as st
-import requests
+import sys
 import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+import streamlit as st
+from backend.main import chat 
+from backend.main import ChatRequest
 
 st.set_page_config(page_title="Smart Kitchen Helper", layout="wide")
 
@@ -14,7 +19,7 @@ st.markdown(
     "<a href='https://www.linkedin.com/in/prince-khunt-linked-in/' target='_blank'>k_prince</a></h3>",
     unsafe_allow_html=True
 )
-
+ 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
@@ -33,13 +38,14 @@ if prompt := st.chat_input("Ask about any recipes"):
 
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            response = requests.post(
-                "http://localhost:8000/chat",
-                json={"question": prompt, "chat_history": st.session_state.chat_history}
-            )
+            json={"question": prompt, "chat_history": st.session_state.chat_history}
 
-            if response.status_code == 200:
-                answer = response.json()["answer"]
+            request = ChatRequest(**json)
+        
+            response = chat(request)
+
+            if response:
+                answer = response["answer"]
                 st.session_state.chat_history.append({
                     "role": "assistant",
                     "content": answer
