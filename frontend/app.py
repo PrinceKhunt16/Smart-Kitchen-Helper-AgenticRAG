@@ -1,9 +1,12 @@
 import streamlit as st
 import requests
+import os
 
 st.set_page_config(page_title="Smart Kitchen Helper", layout="wide")
 
-with open("./style.css") as css:
+css_path = os.path.join(os.path.dirname(__file__), "style.css")
+
+with open(css_path) as css:
     st.markdown(f'<style>{css.read()}</style>', unsafe_allow_html=True)
 
 st.markdown(
