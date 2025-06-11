@@ -1,0 +1,6 @@
+1. Embeddings - done
+2. Basic Streamlit - done
+3. Chat Streamlit - done
+4. Memory - done
+5. Make Agentic Solution - done
+6. Hanlde Edges - 
