@@ -17,3 +17,26 @@
 - **Backend**: FastAPI
 - **Vector Store**: ChromaDB
 - **Search Tool**: DuckDuckGo
+
+## 📦 Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/smart-kitchen-helper.git
+   cd smart-kitchen-helper
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Set up environment variables:
+   Create a `.env` file in the root directory with the following variables:
+   ```env
+   GROQ_API_KEY=your_groq_api_key
+   ```  
+
+## 🔥 Start the Application
+
+Run the Streamlit frontend:
+```bash
+streamlit run frontend/app.py
